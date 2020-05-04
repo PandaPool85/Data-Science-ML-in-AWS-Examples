@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""
+This is the main script which is run by SageMaker by default.
+
+"""
+from __future__ import print_function
+import os
+import sys
+import traceback
+import time
+
+from tensorflow.python.client import device_lib
+
+from model_training.hyperparameter_reader import HyperParameterReader
+from model_training.model import Model
+from data_reading_and_preprocessing.data_reader import DataReader
+from constants import OUTPUT_PATH
+
+
+def train():
+    """
+    This method contains the details of the steps to executed within the script.
+    """
+    try:
+        hyper_parameters = HyperParameterReader.read_hyper_parameters()
+        processed_data = DataReader.get_data()
+        model = Model("demo", hyper_parameters)
+        model.run(processed_data)
+    except Exception as exception:
+        # Write out an error file. This will be returned as the failureReason in the
+        # DescribeTrainingJob result.
+        trc = traceback.format_exc()
+        with open(os.path.join(OUTPUT_PATH, "failure"), "w") as error_file:
+            error_file.write(
+                "Exception during training: " + str(exception) + "\n" + trc
+            )
+        # Printing this causes the exception to be in the training job logs, as well.
+        print("Exception during training: " + str(exception) + "\n" + trc)
+        # A non-zero exit code causes the training job to be marked as Failed.
+        sys.exit(255)
+    print("Finished training the model.")
+
+
+if __name__ == "__main__":
+    START = time.time()
+    print(device_lib.list_local_devices())
+    print("\nScript Status - Starting")
+    train()
+    print("\nScript Status - Finished")
+    print("\nTotal time taken: ", time.time() - START)
+
+    # A zero exit code causes the job to be marked a succeeded.
+    sys.exit(0)

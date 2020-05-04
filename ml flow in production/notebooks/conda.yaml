@@ -1,0 +1,16 @@
+channels:
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/pro
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/free
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/msys2/
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/pro/
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/r/
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/free/
+  - https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/main/
+
+dependencies:
+- python=3.7.3
+- scikit-learn=0.21.3
+- pip:
+  - mlflow
+  - cloudpickle==0.8.0
+name: mlflow-env

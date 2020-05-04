@@ -1,0 +1,18 @@
+flavors:
+  python_function:
+    artifacts:
+      encoder_path:
+        path: artifacts/encoder.pickle
+        uri: ../output/pickle_data/encoder.pickle
+      hdbscan_path:
+        path: artifacts/hdbscan.pickle
+        uri: ../output/pickle_data/hdbscan.pickle
+      umap_path:
+        path: artifacts/umap.pickle
+        uri: ../output/pickle_data/umap.pickle
+    cloudpickle_version: 0.8.0
+    env: conda.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.7.3
+utc_time_created: '2020-02-16 08:34:47.232685'

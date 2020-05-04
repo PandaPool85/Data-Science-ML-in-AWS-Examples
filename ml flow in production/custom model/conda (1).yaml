@@ -1,0 +1,13 @@
+channels:
+- '- https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/main/'
+- '- https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/free/'
+- '- https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/r/'
+- '- https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/pro/'
+- '- https://nexus.apps.usae-2.syngentaaws.org/repository/Anaconda/pkgs/msys2/'
+dependencies:
+- python
+- pip:
+  - mlflow
+  - umap-learn
+  - hdbscan
+name: custom_env
